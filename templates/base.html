@@ -17,7 +17,7 @@
         <link rel="canonical" href="https://demo-basic.adminkit.io/" />
         <!--<link rel="icon" href="{% static 'images/mmust_logo.png' %}" type="image/x-icon"> -->
 
-        <title>CHAMA | HOME</title>
+        <title>TICKETISHA | HOME</title>
 
         <link href="{% static 'admin/css/app.css' %}" rel="stylesheet">
         <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600&display=swap" rel="stylesheet">
@@ -61,21 +61,22 @@
                         <li class="sidebar-item">
                             <a class="sidebar-link" href="/">
                                 <i class="align-middle" data-feather="users"></i> <span
-                                    class="align-middle">MEMBERS</span>
+                                    class="align-middle">CUSTOMERS</span>
                             </a>
                             
                         </li>
                         <li class="sidebar-item">
                             
                                 <a class="sidebar-link dropdown-toggle" href="" data-bs-toggle="collapse" data-bs-target="#loans-menu">
-                                    <i class="align-middle" data-feather="dollar-sign"></i> <span class="align-middle">LOANS</span>
+                                    <i class="align-middle" data-feather="book"></i> <span class="align-middle">TICKETS</span>
                                 </a>
                                 <div class="loan-menu">
                                     <ul class="submenu collapse " id="loans-menu" data-bs-parent="#sidebar-menu" >
-                                        <li class=""><a href="/">Loan List</a></li>
-                                        <li class=""><a href="/">Loan Applications</a></li>
-                                        <li class=""><a href="/">Loan Guarantors</a></li>
-                                        <li class=""><a href="/">Loan Payment</a></li>
+                                        <li class=""><a href="/">Today Tickets</a></li>
+                                        <li class=""><a href="/">Open Ticket</a></li>
+                                        <li class=""><a href="/">Closed Tickets</a></li>
+                                        <li class=""><a href="/">All Tickets</a></li>
+                                        <li class=""><a href="/">New Ticket</a></li>
                                     </ul>
                                 </div>
                         </li>
@@ -83,24 +84,23 @@
                         
                         <li class="sidebar-item">
                             <a class="sidebar-link dropdown-toggle" href="" data-bs-toggle="collapse", data-bs-target="#savings-menu">
-                                <i class="align-middle" data-feather="dollar-sign"></i> <span
-                                    class="align-middle">SAVINGS</span>
+                                <i class="align-middle" data-feather="users"></i> <span
+                                    class="align-middle">Engineers</span>
                             </a>
                             <div class="loan-menu">
                                 <ul class="submenu collapse " id="savings-menu" data-bs-parent="#sidebar-menu" >
-                                    <li class=""><a href="/">Savings List</a></li>
-                                    <li class=""><a href="/">Savings Contributions</a></li>
+                                    <li class=""><a href="/">Engineers List</a></li>
+                                    <li class=""><a href="/">New Engineer</a></li>
                                 </ul>
                             </div>
                         </li>
                         <li class="sidebar-item">
                             <a class="sidebar-link dropdown-toggle" href="" data-bs-toggle="collapse", data-bs-target="#meri-go-round-menu">
-                                <i class="align-middle" data-feather="rotate-cw"></i> <span class="align-middle">MERI-GO-ROUND</span>
+                                <i class="align-middle" data-feather="rotate-cw"></i> <span class="align-middle">PROSPECTING</span>
                             </a>
                             <div class="loan-menu">
                                 <ul class="submenu collapse " id="meri-go-round-menu" data-bs-parent="#sidebar-menu" >
-                                    <li class=""><a href="/">MeriGoRound List</a></li>
-                                    <li class=""><a href="/">MeriGoRound Contributions</a></li>
+                                    <li class=""><a href="/">Customers</a></li>
                                 </ul>
                             </div>
                         </li>
@@ -143,10 +143,10 @@
                                             data-feather="help-circle"></i> Help Center</a>
                                     <div class="dropdown-divider"></div>
 
-                                    <a class="dropdown-item" href="/">Log out</a>
+                                    <a class="dropdown-item" href="{% url 'logout' %}">Log out</a>
                                     {% else %}
                                     <div class="dropdown-divider"></div>
-                                    <a class="dropdown-item" href="#">Login</a>
+                                    <a class="dropdown-item" href="{% url 'login' %}">Login</a>
                                     <a class="dropdown-item" href="#">Register</a>
                                     {% endif %}
                                 </div>
