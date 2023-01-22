@@ -1,0 +1,174 @@
+{% extends "base.html" %}
+{% block content %}
+
+<main class="content">
+    <div class="container-fluid p-0">
+        <div class="row">
+            <div class="col-xl-4 col-md-6">
+                <div class="card card-stats">
+                    <!-- Card body -->
+                    <div class="card-body">
+                        <div class="row">
+                            <div class="col">
+                                <h5 class="card-title text-uppercase text-muted mb-0">Total Members</h5>
+
+                                <span class="h2 font-weight-bold mb-0">80000    </span>
+                            </div>
+                            <div class="col-auto">
+                                <div class="icon icon-shape bg-gradient-red  rounded-circle shadow">
+                                    <i class="" data-feather="users"></i>
+                                </div>
+                            </div>
+                        </div>
+
+                    </div>
+                </div>
+            </div>
+            <div class="col-xl-4 col-md-6">
+                <div class="card card-stats">
+                    <!-- Card body -->
+                    <div class="card-body">
+                        <div class="row">
+                            <div class="col">
+                                <h5 class="card-title text-uppercase text-muted mb-0">Total Savings</h5>
+                                <span class="h2 font-weight-bold mb-0">Ksh </span>
+                            </div>
+                            <div class="col-auto">
+                                <div class="icon icon-shape bg-gradient-orange  rounded-circle shadow">
+                                    <i class="" data-feather="dollar-sign"></i>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="col-xl-4 col-md-6">
+                <div class="card card-stats">
+                    <!-- Card body -->
+                    <div class="card-body">
+                        <div class="row">
+                            <div class="col">
+                                <h5 class="card-title text-uppercase text-muted mb-0">Performance</h5>
+                                <span class="h2 font-weight-bold mb-0">49.65%</span>
+                            </div>
+                            <div class="col-auto">
+                                <div class="icon icon-shape bg-gradient-info text-white rounded-circle shadow">
+                                    <i class="" data-feather="bar-chart"></i>
+                                </div>
+                            </div>
+                        </div>
+
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="row">
+        <div class="col-lg-6 col-md-12">
+            <div class="card ">
+                <div class="card-header">
+                    Yearly Savings
+
+                </div>
+                <div class="card-body">
+                    <canvas id="myChartBar"></canvas>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="row">
+
+        <div class="col-lg-6 col-md-12">
+            <div class="card ">
+                <div class="card-header">
+                    <div class="row">
+                        <div class="col">
+                            <h4 class="card-title"> Members</h4>
+                        </div>
+                        <div class="col text-right">
+                            <a href="/" class="text-dark"><i class="align-middle"
+                                    data-feather="user-plus"></i></a>
+                        </div>
+
+                    </div>
+
+                </div>
+                <div class="card-body">
+                    <div class="table-responsive">
+                        <table class="table tablesorter " id="">
+                            <thead>
+                                <tr>
+                                    <th>Name</th>
+                                    <th>Country</th>
+                                    <th>Town</th>
+                                    <th class="text-center">Savings(Ksh)</th>
+                                </tr>
+                            </thead>
+
+                            <tbody>
+                                
+                                <tr>
+                                    <td><a href="/"
+                                            class="text-dark">Hello</a></td>
+                                    <td>Hello</td>
+                                    <td>Hello</td>
+                                    <td class="text-center">Hello</td>
+                                </tr>
+                              
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="col-lg-6 col-md-12">
+            <div class="card card-tasks">
+                <div class="card-header ">
+                    <h6 class="title d-inline">Pending Loan Approvals</h6>
+                </div>
+                <div class="card-body ">
+                    <div class="table-full-width table-responsive">
+                        <table class="table table-hover my-0">
+                            <thead>
+                                <tr>
+                                    <th>Member</th>
+                                    <th>Amount Applying</th>
+                                    <th colspan="3">Actions</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+
+                                {% for loan_application in loan_applications %}
+                                {% if loan_application.status == 'pending' %}
+                                <tr>
+                                    <td>{{loan_application.member}}</td>
+                                    <td>{{loan_application.amount_applying}}</td>
+                                    <td>
+                                        <a href="/"
+                                            class="btn btn-success">Approve</a>
+                                    </td>
+
+                                    <td>
+                                        <a href="/"
+                                            class="btn btn-danger">Decline</a>
+                                    </td>
+                                </tr>
+                                {% endif %}
+                                {% endfor %}
+
+
+
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</main>
+
+
+{% endblock content %}
