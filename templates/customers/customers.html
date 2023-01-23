@@ -1,0 +1,97 @@
+{% extends "base.html" %}
+{% block content %}
+
+
+<main class="content">
+    <div class="container-fluid p-0">
+        <div class="row">
+            <div class="col-12 col-lg-12 col-xxl-12 d-flex">
+                <div class="card flex-fill">
+                    <div class="card-header">
+                        <div class="row">
+                            <div class="col-5">
+                                <h5 class="card-title mb-0">CUSTOMERS LIST</h5>
+                            </div>
+                            <div class="col-7">
+                                <form method="POST">
+                                    {% csrf_token %}
+                                    <div class="row">
+                                        <div class="col-6">
+                                            <div class="form-group">
+                                                <a href="#" class="btn btn-primary">New Customer</a>
+                                            </div>
+                                        </div>
+                                        <div class="col-3">
+                                            <div class="form-group">
+                                                <select class="form-control" id="gender" name="gender">
+                                                    <option value="none">-------</option>
+                                                    <option value="active">Active</option>
+                                                    <option value="inactive">Inactive</option>
+                                                </select>
+                                            </div>
+                                        </div>
+
+
+                                        <div class="col-3">
+                                            <div class="form-group">
+                                                <input type="submit" class="form-control btn btn-primary"
+                                                    value="Filter">
+                                            </div>
+                                        </div>
+                                    </div>
+
+                                </form>
+                            </div>
+                        </div>
+                    </div>
+                    <table class="table table-hover my-0">
+                        <thead>
+                            <tr>
+                                <th>Name</th>
+                                <th>Email</th>
+                                <th>Phone Number</th>
+                                <th>Headquarters</th>
+                                <th>Address</th>
+                                <th>Status</th>
+                                <th colspan="3">Actions</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+
+                            {% for customer in customers %}
+                            <tr>
+                                <td>{{customer.name}}</td>
+                                <td>{{customer.email}}</td>
+                                <td>{{customer.phone_number}}</td>
+                                <td>{{customer.headquarters}}</td>
+                                <td>{{customer.postal_code}}, {{customer.city}}-{{customer.country}}</td>
+                                <td>{{member.status}}</td>
+                                <td></td>
+                                <td>
+                                    <a href="" class="btn btn-success">View</a>
+                                </td>
+                                <td>
+                                    <a href="#" class="btn btn-primary">Edit</a>
+                                </td>
+                                <td>
+                                    <a href="#" id="delete" class="btn btn-danger"
+                                        data-toggle="modal" data-target="#DeleteModal">Delete</a>
+
+                                </td>
+
+                            </tr>
+                            {% endfor %}
+
+
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+        </div>
+
+    </div>
+</main>
+
+
+
+{% endblock content %}
