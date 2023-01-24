@@ -18,7 +18,7 @@
                                     <div class="row">
                                         <div class="col-6">
                                             <div class="form-group">
-                                                <a href="#" class="btn btn-primary">New Customer</a>
+                                                <a href="{% url 'new-customer' %}" class="btn btn-primary">New Customer</a>
                                             </div>
                                         </div>
                                         <div class="col-3">
@@ -48,10 +48,7 @@
                         <thead>
                             <tr>
                                 <th>Name</th>
-                                <th>Email</th>
                                 <th>Phone Number</th>
-                                <th>Headquarters</th>
-                                <th>Address</th>
                                 <th>Status</th>
                                 <th colspan="3">Actions</th>
                             </tr>
@@ -61,12 +58,10 @@
                             {% for customer in customers %}
                             <tr>
                                 <td>{{customer.name}}</td>
-                                <td>{{customer.email}}</td>
                                 <td>{{customer.phone_number}}</td>
-                                <td>{{customer.headquarters}}</td>
-                                <td>{{customer.postal_code}}, {{customer.city}}-{{customer.country}}</td>
-                                <td>{{member.status}}</td>
-                                <td></td>
+                            
+                                <td>{{customer.status}}</td>
+
                                 <td>
                                     <a href="" class="btn btn-success">View</a>
                                 </td>

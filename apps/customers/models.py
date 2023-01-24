@@ -1,6 +1,7 @@
 from django.db import models
 from django.conf import settings
 from apps.core.models import AbstractBaseModel
+from django.urls import reverse, reverse_lazy
 # Create your models here.
 CUSTOMER_STATUS_CHOICES = (
     ("active", "Active"),
@@ -23,3 +24,6 @@ class Customer(models.Model):
 
     def __str__(self):
         return self.name
+
+    def get_absolute_url(self):
+        return reverse('customers')
