@@ -1,4 +1,7 @@
 from django.contrib import admin
-from .models import Customer
-# Register your models here.
-admin.site.register(Customer)
+
+from .models import *
+
+@admin.register(Customer)
+class CustomerAdmin(admin.ModelAdmin):
+    pass
