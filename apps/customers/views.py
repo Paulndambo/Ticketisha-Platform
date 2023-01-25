@@ -1,9 +1,10 @@
-from django.shortcuts import render
-from .models import Customer
-from django.contrib.auth.models import User
+from django.shortcuts import render, redirect
 from django.db import transaction
-
+from django.contrib import messages
 from django.views.generic import CreateView, ListView, UpdateView, DeleteView
+
+from .models import *
+from apps.accounts.models import *
 # Create your views here.
 def customers(request):
     customers = Customer.objects.all()
@@ -13,46 +14,35 @@ def customers(request):
     return render(request, 'customers/customers.html', context)
 
 
-class CreateNewCustomer(CreateView):
-    model = Customer
-    fields = "__all__"
-    template_name = "customers/new_customer.html"
-
-    
-    def post(self, request, *args, **kwargs):
-        name = request.POST.get('name')
+def create_customer(request):
+    if request.method == 'POST':
         email = request.POST.get('email')
+        name = request.POST.get('name')
         phone_number = request.POST.get('phone_number')
         website = request.POST.get('website')
         logo = request.POST.get('logo')
         postal_code = request.POST.get('postal_code')
+        zip_code = request.POST.get('zip_code')
         city = request.POST.get('city')
         country = request.POST.get('country')
-        zip_code = request.POST.get('zip_code')
         headquarters = request.POST.get('headquarters')
-        status = request.POST.get('status')
 
-        customer_obj = f"""
-        1. Name: {name}
-        2. Email: {email}
-        3. Phone: {phone_number}
-        4. Website: {website}
-        5. Logo: {logo}
-        6. Address: {postal_code}, {city}-{country}
-        7. HQ: {headquarters}
-        8. Status: {status}
-        """
-        print(customer_obj)
+        if User.objects.filter(email=email).exists():
+            messages.info(request, 'Email already exists')
+            return redirect('new-customer')
 
+        elif Customer.objects.filter(name=name).exists():
+            messages.info(request, 'Name already exists')
+            return redirect('new-customer')
+        else:
+            with transaction.atomic():
+                user = User.objects.create_user(email=email, username=email)
 
-        """Create A User Instance"""
-        user = User()
-        user.username = email
-        user.email = email
-        user.is_active = True
-        user.is_staff = False
-        user.set_password('1234')
+                customer = Customer.objects.create(user=user, name=name, phone_number=phone_number, website=website, logo=logo, postal_code=postal_code, zip_code=zip_code, city=city, country=country, headquarters=headquarters)
+    
 
+            messages.success(request, 'Customer Created Successfully')
+            return redirect('customers')
 
-        print(name)
-        return super().post(request, *args, **kwargs)
+    else:
+        return render(request, 'customers/add_customer.html')
