@@ -11,7 +11,6 @@ CUSTOMER_STATUS_CHOICES = (
 class Customer(models.Model):
     user = models.OneToOneField(settings.AUTH_USER_MODEL, on_delete=models.CASCADE)
     name = models.CharField(max_length=255)
-    email = models.EmailField()
     phone_number = models.CharField(max_length=255)
     website = models.CharField(max_length=255, null=True, blank=True)
     logo = models.ImageField(upload_to="customer_logos", null=True, blank=True)
