@@ -1,8 +1,9 @@
-from django.shortcuts import render, redirect
+from django.shortcuts import render, redirect, get_object_or_404
 from django.db import transaction
 from django.contrib import messages
 from django.views.generic import CreateView, ListView, UpdateView, DeleteView
 
+from .forms import *
 from .models import *
 from apps.accounts.models import *
 # Create your views here.
@@ -46,3 +47,23 @@ def create_customer(request):
 
     else:
         return render(request, 'customers/add_customer.html')
+
+def customer_detail(request, id):
+    customer = Customer.objects.get(id=id)
+
+    context = {
+        "customer": customer
+    }
+
+    return render(request, "customers/customer_detail.html", context)
+
+class UpdateCustomerView(UpdateView):
+    model = Customer
+    fields = ['name', 'phone_number', 'website', 'logo', 'postal_code', 'zip_code', 'city', 'country', 'headquarters']
+    template_name = 'customers/update_customer.html'
+
+def delete_customer(request, pk):
+    customer = Customer.objects.get(id=pk)
+    customer.delete()
+
+    return redirect('customers')
