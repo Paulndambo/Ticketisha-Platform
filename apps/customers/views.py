@@ -38,7 +38,6 @@ def create_customer(request):
         else:
             with transaction.atomic():
                 user = User.objects.create_user(email=email, username=email)
-
                 customer = Customer.objects.create(user=user, name=name, phone_number=phone_number, website=website, logo=logo, postal_code=postal_code, zip_code=zip_code, city=city, country=country, headquarters=headquarters)
     
 
