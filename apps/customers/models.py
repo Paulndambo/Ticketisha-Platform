@@ -13,7 +13,7 @@ class Customer(models.Model):
     name = models.CharField(max_length=255)
     phone_number = models.CharField(max_length=255)
     website = models.CharField(max_length=255, null=True, blank=True)
-    logo = models.ImageField(upload_to="customer_logos", null=True, blank=True)
+    logo = models.ImageField(upload_to="customer_logos/", null=True, blank=True)
     postal_code = models.CharField(max_length=255, null=True, blank=True)
     zip_code = models.CharField(max_length=255, null=True, blank=True)
     city = models.CharField(max_length=255, null=True, blank=True)
