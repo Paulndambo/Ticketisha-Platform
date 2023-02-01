@@ -23,9 +23,9 @@
                                         </div>
                                         <div class="col-3">
                                             <div class="form-group">
-                                                <select class="form-control" id="gender" name="gender">
+                                                <select class="form-control" id="status" name="status">
                                                     <option value="none">-------</option>
-                                                    <option value=todo">Todo</option>
+                                                    <option value="todo">Todo</option>
                                                     <option value="reported">Reported</option>
                                                     <option value="in_progress">In Progress</option>
                                                     <option value="done">Done</option>
@@ -70,13 +70,13 @@
                                 <td>{{ticket.status}}</td>
                                 <td></td>
                                 <td>
-                                    <a href="" class="btn btn-success">View</a>
+                                    <a href="{% url 'ticket-detail' ticket.id %}" class="btn btn-success">View</a>
                                 </td>
                                 <td>
-                                    <a href="#" class="btn btn-primary">Edit</a>
+                                    <a href="{% url 'update-ticket' ticket.id %}" class="btn btn-primary">Edit</a>
                                 </td>
                                 <td>
-                                    <a href="#" id="delete" class="btn btn-danger"
+                                    <a href="{% url 'delete-ticket' ticket.id %}" id="delete" class="btn btn-danger"
                                         data-toggle="modal" data-target="#DeleteModal">Delete</a>
 
                                 </td>

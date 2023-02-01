@@ -1,10 +1,20 @@
-from django.shortcuts import render
+from django.shortcuts import render, redirect
 from .models import Ticket, TicketDiscussion
-from django.views.generic import CreateView, ListView, DeleteView, ListView
+from django.views.generic import CreateView, ListView, DeleteView, UpdateView
 from .forms import TicketForm
 # Create your views here.
 def tickets(request):
-    tickets = Ticket.objects.all()
+    if request.method == 'POST':
+        status = request.POST.get('status')
+        print(status)
+        if status == 'none':
+            tickets = Ticket.objects.all()
+        else:
+            tickets = Ticket.objects.filter(status=status)
+
+    else:
+        tickets = Ticket.objects.all()
+        
     context = {
         "tickets": tickets
     }
@@ -38,23 +48,30 @@ def closed_tickets(request):
 
 class CreateNewTicket(CreateView):
     model = Ticket
-    fields = "__all__"
+    fields = ['title', 'ticket_type', 'customer', 'reporter', 'description', 'screenshots']
     template_name = "helpdesk/new_ticket.html"
 
-    def post(self, request, *args, **kwargs):
-        title = request.POST.get("title")
-        description = request.POST.get("description")
-        ticket_type = request.POST.get("ticket_type")
-        customer = request.POST.get("customer")
-        status = request.POST.get("status")
-        screenshots = request.POST.get("screenshots")
-        reporter = request.POST.get("reporter")
-        
-        print("************Ticket Title************")
-        print(title)
-        print(description)
-        print("************Ticket Title************")
-        return super().post(request, *args, **kwargs)
+def ticket_detail(request, id):
+    ticket = Ticket.objects.get(id=id)
+
+    context = {
+        'ticket': ticket
+    }
+
+    return render(request, 'helpdesk/ticket_detail.html', context)
+
+class UpdateTicket(UpdateView):
+    model = Ticket
+    fields = ['title', 'ticket_type', 'customer', 'reporter', 'description', 'screenshots']
+    template_name = "helpdesk/ticket_update.html"
+
+def delete_ticket(request, id):
+    ticket = Ticket.objects.get(id=id)
+
+    ticket.delete()
+
+    return redirect('tickets')
+
 
 class TestCreate(CreateView):
     model = Ticket

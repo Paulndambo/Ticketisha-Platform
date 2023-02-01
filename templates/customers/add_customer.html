@@ -2,6 +2,8 @@
 {% block content %}
 {% load crispy_forms_tags %}
 
+
+
 <main class="content">
     <div class="container-fluid p-0">
         <div class="row">
@@ -14,8 +16,11 @@
                             </div>
                         </div>
                     </div>
+                    
                     <form class="pt-3" method="POST">
+
                         {% csrf_token %}
+                    
                         <div class="row p-3">
                             <div class="form-group col-md-6">
                                 <label for="email">Email</label>
