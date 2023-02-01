@@ -1,4 +1,4 @@
-from django.shortcuts import render
+from django.shortcuts import render, redirect
 from .models import Ticket, TicketDiscussion
 from django.views.generic import CreateView, ListView, DeleteView, ListView
 from .forms import TicketForm
@@ -38,23 +38,10 @@ def closed_tickets(request):
 
 class CreateNewTicket(CreateView):
     model = Ticket
-    fields = "__all__"
+    fields = ['title', 'ticket_type', 'customer', 'reporter', 'description', 'screenshots']
     template_name = "helpdesk/new_ticket.html"
 
-    def post(self, request, *args, **kwargs):
-        title = request.POST.get("title")
-        description = request.POST.get("description")
-        ticket_type = request.POST.get("ticket_type")
-        customer = request.POST.get("customer")
-        status = request.POST.get("status")
-        screenshots = request.POST.get("screenshots")
-        reporter = request.POST.get("reporter")
-        
-        print("************Ticket Title************")
-        print(title)
-        print(description)
-        print("************Ticket Title************")
-        return super().post(request, *args, **kwargs)
+
 
 class TestCreate(CreateView):
     model = Ticket

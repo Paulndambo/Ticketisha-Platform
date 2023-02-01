@@ -26,7 +26,7 @@ class Ticket(AbstractBaseModel):
     ticket_type = models.CharField(max_length=255, choices=TICKET_TYPE_CHOICES)
     #description = models.TextField()
     description = HTMLField()
-    status = models.CharField(max_length=255, choices=TICKET_STATUS_CHOICES)
+    status = models.CharField(max_length=255, choices=TICKET_STATUS_CHOICES, default='reported')
     screenshots = models.ImageField(upload_to="screenshots/", null=True, blank=True)
     reporter = models.CharField(max_length=255, null=True, blank=True)
 
