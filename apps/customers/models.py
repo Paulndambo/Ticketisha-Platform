@@ -4,8 +4,8 @@ from apps.core.models import AbstractBaseModel
 from django.urls import reverse, reverse_lazy
 # Create your models here.
 CUSTOMER_STATUS_CHOICES = (
-    ("active", "Active"),
-    ("disabled", "Disabled"),
+    ("active", "active"),
+    ("disabled", "disabled"),
 )
 
 class Customer(models.Model):

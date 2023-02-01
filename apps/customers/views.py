@@ -7,8 +7,18 @@ from .forms import *
 from .models import *
 from apps.accounts.models import *
 # Create your views here.
+
 def customers(request):
-    customers = Customer.objects.all()
+    if request.method == 'POST':
+        status = request.POST.get('status')
+        print(status)
+        if status == 'none':
+            customers = Customer.objects.all()
+        else:
+            customers = Customer.objects.filter(status=status)
+    else:
+        customers = Customer.objects.all()
+
     context = {
         "customers": customers
     }
