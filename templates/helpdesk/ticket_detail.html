@@ -1,0 +1,58 @@
+{% extends "base.html" %}
+{% block content %}
+
+<main class="content">
+    <div class="container-fluid p-0">
+        <div class="row">
+            <div class="col-12 col-lg-12 col-xxl-12 d-flex">
+                <div class="card flex-fill">
+                    <div class="card-header">
+                        <div class="row">
+                            <div class="col">
+                                <div class="row">
+                                    <div class="col-md-9">
+                                        <h5 class="card-title mb-0">TICKET DETAILS</h5>
+                                    </div>
+                                    <div class="col-md-3">
+                                        <a href="{% url 'update-ticket' ticket.id %}" class="btn btn-primary">Edit Details</a>
+                                    </div>
+                                </div>
+                                
+                                <hr>
+                                <h6>Ticket Information</h6>
+                                
+                                <div class="row mt-3">
+                                    <div class="col-md-3 font-weight-bold">Ticket For:</div>
+                                    <div class="col">{{ ticket.customer.name }}</div>
+                                </div>
+                                <div class="row mt-3">
+                                    <div class="col-md-3 font-weight-bold">Title:</div>
+                                    <div class="col">{{ ticket.title }}</div>
+                                </div>
+                                <div class="row mt-3">
+                                    <div class="col-md-3 font-weight-bold">Type:</div>
+                                    <div class="col">{{ ticket.ticket_type }}</div>
+                                </div>
+                                <div class="row mt-3">
+                                    <div class="col-md-3 font-weight-bold">Description:</div>
+                                    <div class="col"><a href="#">{{ ticket.description }}</a></div>
+                                </div>
+
+                                <div class="row mt-3">
+                                    <div class="col-md-3 font-weight-bold">Status:</div>
+                                    <div class="col">{{ ticket.status }}</div>
+                                </div>
+                                
+                            </div>
+                        </div>
+                    </div>
+                    
+                </div>
+            </div>
+        </div>
+
+    </div>
+</main>
+
+
+{% endblock content %}

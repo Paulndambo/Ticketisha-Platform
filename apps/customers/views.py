@@ -1,13 +1,24 @@
-from django.shortcuts import render, redirect
+from django.shortcuts import render, redirect, get_object_or_404
 from django.db import transaction
 from django.contrib import messages
 from django.views.generic import CreateView, ListView, UpdateView, DeleteView
 
+from .forms import *
 from .models import *
 from apps.accounts.models import *
 # Create your views here.
+
 def customers(request):
-    customers = Customer.objects.all()
+    if request.method == 'POST':
+        status = request.POST.get('status')
+        print(status)
+        if status == 'none':
+            customers = Customer.objects.all()
+        else:
+            customers = Customer.objects.filter(status=status)
+    else:
+        customers = Customer.objects.all()
+
     context = {
         "customers": customers
     }
@@ -37,7 +48,6 @@ def create_customer(request):
         else:
             with transaction.atomic():
                 user = User.objects.create_user(email=email, username=email)
-
                 customer = Customer.objects.create(user=user, name=name, phone_number=phone_number, website=website, logo=logo, postal_code=postal_code, zip_code=zip_code, city=city, country=country, headquarters=headquarters)
     
 
@@ -46,3 +56,23 @@ def create_customer(request):
 
     else:
         return render(request, 'customers/add_customer.html')
+
+def customer_detail(request, id):
+    customer = Customer.objects.get(id=id)
+
+    context = {
+        "customer": customer
+    }
+
+    return render(request, "customers/customer_detail.html", context)
+
+class UpdateCustomerView(UpdateView):
+    model = Customer
+    fields = ['name', 'phone_number', 'website', 'logo', 'postal_code', 'zip_code', 'city', 'country', 'headquarters']
+    template_name = 'customers/update_customer.html'
+
+def delete_customer(request, pk):
+    customer = Customer.objects.get(id=pk)
+    customer.delete()
+
+    return redirect('customers')

@@ -23,7 +23,7 @@
                                         </div>
                                         <div class="col-3">
                                             <div class="form-group">
-                                                <select class="form-control" id="gender" name="gender">
+                                                <select class="form-control" id="status" name="status">
                                                     <option value="none">-------</option>
                                                     <option value="active">Active</option>
                                                     <option value="inactive">Inactive</option>
@@ -66,13 +66,13 @@
                                 <td>{{customer.status}}</td>
 
                                 <td>
-                                    <a href="" class="btn btn-success">View</a>
+                                    <a href="{% url 'customer-details' customer.id %}" class="btn btn-success">View</a>
                                 </td>
                                 <td>
-                                    <a href="#" class="btn btn-primary">Edit</a>
+                                    <a href="{% url 'update-customer' customer.id %}" class="btn btn-primary">Edit</a>
                                 </td>
                                 <td>
-                                    <a href="#" id="delete" class="btn btn-danger"
+                                    <a href="{% url 'delete-customer' customer.id %}" id="delete" class="btn btn-danger"
                                         data-toggle="modal" data-target="#DeleteModal">Delete</a>
 
                                 </td>

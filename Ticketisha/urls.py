@@ -9,5 +9,7 @@ urlpatterns = [
     path("", include("apps.core.urls")),
     path("accounts/", include("apps.accounts.urls")),
     path("customers/", include("apps.customers.urls")),
+    path("helpdesk/", include("apps.helpdesk.urls")),
+    path('tinymce/', include('tinymce.urls')),
 ]
 urlpatterns+=static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)

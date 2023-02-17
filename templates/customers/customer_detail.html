@@ -1,0 +1,76 @@
+{% extends "base.html" %}
+{% block content %}
+
+<main class="content">
+    <div class="container-fluid p-0">
+        <div class="row">
+            <div class="col-12 col-lg-12 col-xxl-12 d-flex">
+                <div class="card flex-fill">
+                    <div class="card-header">
+                        <div class="row">
+                            <div class="col">
+                                <div class="row">
+                                    <div class="col-md-9">
+                                        <h5 class="card-title mb-0">CUSTOMER DETAILS</h5>
+                                    </div>
+                                    <div class="col-md-3">
+                                        <a href="{% url 'update-customer' customer.id %}" class="btn btn-primary">Edit Details</a>
+                                    </div>
+                                </div>
+                                
+                                <hr>
+                                <h6>Customer Information</h6>
+                                
+                                <div class="row mt-3">
+                                    <div class="col-md-3 font-weight-bold">Name:</div>
+                                    <div class="col">{{ customer.name }}</div>
+                                </div>
+                                <div class="row mt-3">
+                                    <div class="col-md-3 font-weight-bold">Email:</div>
+                                    <div class="col">{{ customer.user.email }}</div>
+                                </div>
+                                <div class="row mt-3">
+                                    <div class="col-md-3 font-weight-bold">Phone Number:</div>
+                                    <div class="col">{{ customer.phone_number }}</div>
+                                </div>
+                                <div class="row mt-3">
+                                    <div class="col-md-3 font-weight-bold">Website:</div>
+                                    <div class="col"><a href="#">{{ customer.website }}</a></div>
+                                </div>
+
+                                <hr>
+                                <h6>Location Information</h6>
+
+                                <div class="row mt-3">
+                                    <div class="col-md-3 font-weight-bold">Postal Code:</div>
+                                    <div class="col">{{ customer.postal_code }}</div>
+                                </div>
+                                <div class="row mt-3">
+                                    <div class="col-md-3 font-weight-bold">Zip Code:</div>
+                                    <div class="col">{{ customer.zip_code }}</div>
+                                </div>
+                                <div class="row mt-3">
+                                    <div class="col-md-3 font-weight-bold">City:</div>
+                                    <div class="col">{{ customer.city }}</div>
+                                </div>
+                                <div class="row mt-3">
+                                    <div class="col-md-3 font-weight-bold">Country:</div>
+                                    <div class="col">{{ customer.country }}</div>
+                                </div>
+                                <div class="row mt-3">
+                                    <div class="col-md-3 font-weight-bold">Headquarters:</div>
+                                    <div class="col">{{ customer.headquarters }}</div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    
+                </div>
+            </div>
+        </div>
+
+    </div>
+</main>
+
+
+{% endblock content %}

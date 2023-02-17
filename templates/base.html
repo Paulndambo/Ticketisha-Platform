@@ -12,15 +12,18 @@
             content="adminkit, bootstrap, bootstrap 5, admin, dashboard, template, responsive, css, sass, html, theme, front-end, ui kit, web">
 
         <link rel="preconnect" href="https://fonts.gstatic.com">
-   
+        
 
         <link rel="canonical" href="https://demo-basic.adminkit.io/" />
         <!--<link rel="icon" href="{% static 'images/mmust_logo.png' %}" type="image/x-icon"> -->
-
+        <script src="https://cdn.tiny.cloud/1/o9ayb35lp4vruo8rlgicuc067kev8icvfx2tpeou35yj4bnz/tinymce/6/tinymce.min.js"
+            referrerpolicy="origin"></script>
+         <script src="{% static 'tinymce/js/tinymce/tinymce.min.js' %}"></script>
         <title>TICKETISHA | HOME</title>
 
         <link href="{% static 'admin/css/app.css' %}" rel="stylesheet">
         <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600&display=swap" rel="stylesheet">
+        {{ form.media }}
 
         <style>
             .loan-menu{
@@ -72,11 +75,11 @@
                                 </a>
                                 <div class="loan-menu">
                                     <ul class="submenu collapse " id="loans-menu" data-bs-parent="#sidebar-menu" >
-                                        <li class=""><a href="/">Today Tickets</a></li>
-                                        <li class=""><a href="/">Open Ticket</a></li>
-                                        <li class=""><a href="/">Closed Tickets</a></li>
-                                        <li class=""><a href="/">All Tickets</a></li>
-                                        <li class=""><a href="/">New Ticket</a></li>
+                                        <li class=""><a href="{% url 'tickets-today' %}">Today Tickets</a></li>
+                                        <li class=""><a href="{% url 'open-tickets' %}">Open Ticket</a></li>
+                                        <li class=""><a href="{% url 'closed-tickets' %}">Closed Tickets</a></li>
+                                        <li class=""><a href="{% url 'tickets' %}">All Tickets</a></li>
+                                        <li class=""><a href="{% url 'new-ticket' %}">New Ticket</a></li>
                                     </ul>
                                 </div>
                         </li>
@@ -154,7 +157,8 @@
                         </ul>
                     </div>
                 </nav>
-
+                
+                {% include 'include/messages.html' %}
                 {% block content %}
 
                 {% endblock content %}
