@@ -8,6 +8,9 @@ from .models import *
 from apps.accounts.models import *
 # Create your views here.
 
+def formatted_value(value):
+    return "{:.2f}".format(value)
+
 def customers(request):
     if request.method == 'POST':
         status = request.POST.get('status')
@@ -19,8 +22,18 @@ def customers(request):
     else:
         customers = Customer.objects.all()
 
+    updated_customers = []
+
+    for customer in customers:
+        customer_obj = {
+            "id": formatted_value(customer.id),
+            "name": customer.name
+        }
+        updated_customers.append(customer_obj)
+
     context = {
-        "customers": customers
+        "customers": updated_customers,
+        "formatted_value": formatted_value
     }
     return render(request, 'customers/customers.html', context)
 

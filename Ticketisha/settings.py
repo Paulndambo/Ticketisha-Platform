@@ -36,7 +36,8 @@ INSTALLED_APPS = [
 
     #Third Party Apps
     'crispy_forms',
-    'tinymce',
+    'ckeditor',
+    'django_quill',
 ]
 
 CRISPY_TEMPLATE_PACK = "bootstrap4"
@@ -134,6 +135,7 @@ STATICFILES_DIRS = [
 
 STATIC_ROOT = os.path.join(BASE_DIR, 'staticfiles')
 MEDIA_ROOT = os.path.join(BASE_DIR, 'media')
+CKEDITOR_UPLOAD_PATH = 'uploads/'
 
 # Default primary key field type
 # https://docs.djangoproject.com/en/4.1/ref/settings/#default-auto-field
@@ -145,8 +147,8 @@ AUTH_USER_MODEL = 'accounts.User'
 LOGIN_REDIRECT_URL = "home"
 LOGOUT_REDIRECT_URL = "home"
 
-TINYMCE_JS_URL = 'https://cdn.tiny.cloud/1/no-api-key/tinymce/6/tinymce.min.js'
-TINYMCE_COMPRESSOR = False
-
-TINYMCE_JS_URL = os.path.join(STATIC_URL, "tinymce/js/tinymce/tinymce.min.js")
-TINYMCE_JS_ROOT = os.path.join(STATIC_ROOT, "tinymce/js/tinymce/tinymce.min.js")
+CKEDITOR_CONFIGS = {
+    "default": {
+        "removePlugins": "stylesheetparser",
+    }
+}

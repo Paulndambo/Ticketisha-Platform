@@ -1,8 +1,6 @@
 {% extends "base.html" %}
 {% block content %}
 {% load crispy_forms_tags %}
-<script src="https://cdn.tiny.cloud/1/o9ayb35lp4vruo8rlgicuc067kev8icvfx2tpeou35yj4bnz/tinymce/6/tinymce.min.js"
-    referrerpolicy="origin"></script>
 
 <main class="content">
     <div class="container-fluid p-0">
@@ -36,19 +34,13 @@
                                 {{ form.reporter|as_crispy_field }}
                             </div>
                         </div>
-                        <div class="row p-3">
-                            <div class="form-group mb-0 textarea">
-                                {{ form.description | as_crispy_field }}
-                            </div>
-                            
-                        </div>
+                        
                         <div class="row p-3">
                             <div class="form-group col-md-6 mb-0">
                                 {{ form.screenshots|as_crispy_field }}
                             </div>
                         </div>
                         
-
                         <div class="p-3 text-center">
                             <input type="submit" value="Save" class="btn btn-primary">
                         </div>
@@ -61,19 +53,6 @@
     </div>
 </main>
 
-<script>
-    tinymce.init({
-        selector: 'textarea',
-        plugins: 'anchor autolink charmap codesample emoticons image link lists media searchreplace table visualblocks wordcount checklist mediaembed casechange export formatpainter pageembed linkchecker a11ychecker tinymcespellchecker permanentpen powerpaste advtable advcode editimage tinycomments tableofcontents footnotes mergetags autocorrect typography inlinecss',
-        toolbar: 'undo redo | blocks fontfamily fontsize | bold italic underline strikethrough | link image media table mergetags | addcomment showcomments | spellcheckdialog a11ycheck typography | align lineheight | checklist numlist bullist indent outdent | emoticons charmap | removeformat',
-        tinycomments_mode: 'embedded',
-        tinycomments_author: 'Author name',
-        mergetags_list: [
-            { value: 'First.Name', title: 'First Name' },
-            { value: 'Email', title: 'Email' },
-        ],
-    });
-</script>
 
 
 {% endblock content %}

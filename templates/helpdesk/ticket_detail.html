@@ -35,12 +35,18 @@
                                 </div>
                                 <div class="row mt-3">
                                     <div class="col-md-3 font-weight-bold">Description:</div>
-                                    <div class="col"><a href="#">{{ ticket.description }}</a></div>
+                                    <div class="col">{{ ticket.description | safe }}</div>
                                 </div>
 
                                 <div class="row mt-3">
                                     <div class="col-md-3 font-weight-bold">Status:</div>
                                     <div class="col">{{ ticket.status }}</div>
+                                </div>
+
+                                <div class="row mt-3">
+                                    <div class="col-md-3 font-weight-bold">Screenshots</div>
+                                    <img src="{{ ticket.screenshots.url }}" />
+                                   
                                 </div>
                                 
                             </div>

@@ -1,7 +1,5 @@
 {% extends "base.html" %}
 {% block content %}
-
-
 <main class="content">
     <div class="container-fluid p-0">
         <div class="row">
@@ -51,10 +49,8 @@
                     <table class="table table-hover my-0">
                         <thead>
                             <tr>
-                                <th>Customer</th>
                                 <th>Title</th>
                                 <th>Ticket Type</th>
-                                <th>Reporter</th>
                                 <th>Status</th>
                                 <th colspan="3">Actions</th>
                             </tr>
@@ -63,10 +59,8 @@
 
                             {% for ticket in tickets %}
                             <tr>
-                                <td>{{ticket.customer}}</td>
                                 <td>{{ticket.title}}</td>
                                 <td>{{ticket.ticket_type}}</td>
-                                <td>{{ticket.reporter}}</td>
                                 <td>{{ticket.status}}</td>
                                 <td></td>
                                 <td>
@@ -78,13 +72,9 @@
                                 <td>
                                     <a href="{% url 'delete-ticket' ticket.id %}" id="delete" class="btn btn-danger"
                                         data-toggle="modal" data-target="#DeleteModal">Delete</a>
-
                                 </td>
-
                             </tr>
                             {% endfor %}
-
-
                         </tbody>
                     </table>
                 </div>

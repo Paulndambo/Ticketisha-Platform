@@ -62,7 +62,7 @@ def ticket_detail(request, id):
 
 class UpdateTicket(UpdateView):
     model = Ticket
-    fields = ['title', 'ticket_type', 'customer', 'reporter', 'description', 'screenshots']
+    fields = ['title', 'ticket_type', 'customer', 'reporter', 'screenshots']
     template_name = "helpdesk/ticket_update.html"
 
 def delete_ticket(request, id):

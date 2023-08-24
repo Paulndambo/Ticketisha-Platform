@@ -2,11 +2,12 @@ from django.db import models
 from apps.customers.models import Customer
 from apps.core.models import AbstractBaseModel
 from django.conf import settings
-from tinymce.models import HTMLField
+from ckeditor.fields import RichTextField
 from django.urls import reverse, reverse_lazy
+from django_quill.fields import QuillField
 
 # Create your models here.
-content = HTMLField()
+
 TICKET_TYPE_CHOICES = (
     ("bug", "Bug"),
     ("feature", "Feature"),
@@ -25,7 +26,9 @@ class Ticket(AbstractBaseModel):
     title = models.CharField(max_length=255)
     ticket_type = models.CharField(max_length=255, choices=TICKET_TYPE_CHOICES)
     #description = models.TextField()
-    description = HTMLField()
+    #description = RichTextField()
+    #description = HTMLField()
+    description = QuillField()
     status = models.CharField(max_length=255, choices=TICKET_STATUS_CHOICES, default='reported')
     screenshots = models.ImageField(upload_to="screenshots/", null=True, blank=True)
     reporter = models.CharField(max_length=255, null=True, blank=True)

@@ -48,9 +48,6 @@
                         <thead>
                             <tr>
                                 <th>Name</th>
-                                <th>Phone Number</th>
-                                <th>Email</th>
-                                <th>Website</th>
                                 <th>Status</th>
                                 <th colspan="3">Actions</th>
                             </tr>
@@ -60,19 +57,16 @@
                             {% for customer in customers %}
                             <tr>
                                 <td>{{customer.name}}</td>
-                                <td>{{customer.phone_number}}</td>
-                                <td>{{customer.user.email}}</td>
-                                <td><a href="#">{{customer.website}}</a></td>
-                                <td>{{customer.status}}</td>
+                                <td>{{customer.id}}</td>
 
                                 <td>
-                                    <a href="{% url 'customer-details' customer.id %}" class="btn btn-success">View</a>
+                                    <a href="#"btn btn-success">View</a>
                                 </td>
                                 <td>
-                                    <a href="{% url 'update-customer' customer.id %}" class="btn btn-primary">Edit</a>
+                                    <a href="#" class="btn btn-primary">Edit</a>
                                 </td>
                                 <td>
-                                    <a href="{% url 'delete-customer' customer.id %}" id="delete" class="btn btn-danger"
+                                    <a href="#" id="delete" class="btn btn-danger"
                                         data-toggle="modal" data-target="#DeleteModal">Delete</a>
 
                                 </td>
